@@ -2,7 +2,7 @@
 
 ### A Secure, Locally Hosted Password Manager & Dashboard
 
-**Developed by:** Sameer Raja (Cyber Security Student, NIU)
+**Developed by:** Samir Raja (Cyber Security Student, NIU)
 
 ## 🚨 Overview
 Cyber Sentry is a Python-based security tool designed to store credentials securely on your local machine. Unlike cloud managers, your data never leaves your device. It features a **Matrix-themed UI** for a complete hacker experience.
