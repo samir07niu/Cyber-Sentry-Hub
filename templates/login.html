@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ACCESS CONTROL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        body { background: black; color: #0f0; font-family: 'Share Tech Mono', monospace; text-align: center; margin-top: 80px; }
+        .box { 
+            border: 2px solid #0f0; padding: 40px; display: inline-block; 
+            box-shadow: 0 0 20px #0f0; background: rgba(0,20,0,0.8);
+        }
+        input { 
+            background: black; border: 1px solid #0f0; color: #0f0; 
+            padding: 10px; margin: 10px; width: 250px; font-family: inherit; 
+        }
+        button { 
+            background: #004400; color: white; border: 1px solid #0f0; 
+            padding: 10px 20px; cursor: pointer; font-family: inherit; font-size: 18px;
+        }
+        button:hover { background: #0f0; color: black; box-shadow: 0 0 15px #0f0; }
+        a { color: cyan; text-decoration: none; }
+        /* Developer Credit Footer */
+        .footer { margin-top: 50px; font-size: 14px; color: #005500; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>🔒 SYSTEM LOGIN</h1>
+        <p>AUTHENTICATION REQUIRED</p>
+        
+        <form action="/" method="POST">
+            <input type="text" name="username" placeholder="USERNAME" required><br>
+            <input type="password" name="password" placeholder="PASSWORD" required><br><br>
+            <button type="submit">ACCESS DASHBOARD</button>
+        </form>
+        <br>
+        <p>New User? <a href="/register">Create Identity</a></p>
+    </div>
+
+    <div class="footer">
+        <p>// DEVELOPED BY CYBER ANALYST: SAMIR RAJA //</p>
+        <p>SECURE SYSTEM v2.0</p>
+    </div>
+</body>
+</html>

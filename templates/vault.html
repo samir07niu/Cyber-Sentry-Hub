@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SECURE VAULT</title>
+    <style>
+        body { background-color: #0d0d0d; color: #00ff00; font-family: 'Courier New', monospace; text-align: center; padding: 20px; }
+        h1 { text-shadow: 0 0 10px #00ff00; }
+        input {
+            background: black; border: 1px solid #00ff00; color: #00ff00;
+            padding: 10px; margin: 5px; width: 250px; font-family: inherit;
+        }
+        button {
+            background: #004400; color: white; border: 1px solid #00ff00;
+            padding: 10px 20px; cursor: pointer; font-weight: bold;
+        }
+        button:hover { background: #00ff00; color: black; }
+        table { margin: auto; border-collapse: collapse; width: 60%; margin-top: 20px; }
+        td, th { border: 1px solid #333; padding: 10px; text-align: left; }
+        th { background-color: #002200; }
+        .back-btn { position: absolute; top: 20px; left: 20px; text-decoration: none; color: gray; }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-btn">⬅ Back to Dashboard</a>
+    <h1>🔐 PASSWORD VAULT</h1>
+    
+    <div style="border: 1px dashed #004400; padding: 20px; display: inline-block;">
+        <form action="/vault" method="POST">
+            <input type="text" name="website" placeholder="Website Name (e.g. Facebook)" required><br>
+            <input type="text" name="password" placeholder="Password / Secret" required><br><br>
+            <button type="submit">💾 SAVE TO DATABASE</button>
+        </form>
+    </div>
+
+    <h3>📂 STORED CREDENTIALS:</h3>
+    <table>
+        <tr>
+            <th>WEBSITE</th>
+            <th>SECRET KEY</th>
+        </tr>
+        {% for row in secrets %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td style="filter: blur(3px);">{{ row[1] }} (Hover to see)</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

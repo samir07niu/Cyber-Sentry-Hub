@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CYBER SENTRY - ELITE MODE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CORE STYLES --- */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: #0f0; /* Neon Green */
+            font-family: 'Share Tech Mono', monospace;
+            overflow: hidden; /* Scrollbar chupao */
+        }
+
+        /* --- MATRIX CANVAS (Background Animation) --- */
+        canvas {
+            display: block;
+            position: fixed; /* Fix piche chipka do */
+            top: 0;
+            left: 0;
+            z-index: -1; /* Sabse peeche */
+        }
+
+        /* --- MAIN CONTENT CONTAINER --- */
+        .dashboard-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background: rgba(0, 20, 0, 0.7); /* Thoda sa transparent background taaki text padha jaye */
+            padding: 40px;
+            border: 2px solid #0f0;
+            box-shadow: 0 0 30px #0f0, inset 0 0 20px #0f0; /* Neon Glow */
+            border-radius: 10px;
+            backdrop-filter: blur(5px); /* Peeche ka matrix dhundhla karo */
+        }
+
+        h1 {
+            font-size: 60px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px #0f0; /* Text Chamkao */
+            animation: glitch 2s infinite; /* Glitch animation */
+        }
+
+        p { font-size: 18px; color: cyan; letter-spacing: 2px; }
+        hr { border-color: #0f0; box-shadow: 0 0 10px #0f0; }
+
+        /* --- BUTTONS (Neon Style) --- */
+        .btn {
+            background-color: black;
+            color: #0f0;
+            border: 2px solid #0f0;
+            padding: 15px 40px;
+            font-size: 22px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 20px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: 0.3s; /* Smooth hover animation */
+            box-shadow: 0 0 15px #004400;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            background-color: #0f0;
+            color: black;
+            box-shadow: 0 0 40px #0f0;
+            transform: scale(1.05); /* Thoda bada ho jaye */
+        }
+
+        /* --- SPECIAL BUTTONS --- */
+        .btn-cyan { border-color: cyan; color: cyan; box-shadow: 0 0 15px #004444; }
+        .btn-cyan:hover { background-color: cyan; color: black; box-shadow: 0 0 40px cyan; }
+
+        /* --- GLITCH ANIMATION --- */
+        @keyframes glitch {
+            0% { text-shadow: 3px 0px 0px red, -3px 0px 0px blue; }
+            95% { text-shadow: 3px 0px 0px red, -3px 0px 0px blue; }
+            100% { text-shadow: 0 0 20px #0f0; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrixCanvas"></canvas>
+
+    <div class="dashboard-container">
+        <h1>🛡️ CYBER SENTRY HUB 🛡️</h1>
+        <p>[ SYSTEM STATUS: ONLINE || OPERATOR: {{ user }} ]</p>
+        <hr>
+        <br>
+	<br><br>
+<a href="/logout" class="btn" style="border-color: red; color: red;">🛑 LOGOUT SYSTEM</a>
+        
+        <a href="/myip" class="btn">📍 TRACK IP</a>
+        <a href="/vault" class="btn">🔐 SECURE VAULT</a>
+        <a href="/generate" class="btn">⚡ GENERATE KEY</a>
+        <br><br>
+        <a href="/about" class="btn btn-cyan">👨‍💻 DEVELOPER INTEL</a>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Canvas ko full screen karo
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Matrix Characters (Katana, numbers, etc.)
+        const katakana = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const alphabet = katakana + latin + nums;
+
+        const fontSize = 16;
+        const columns = canvas.width/fontSize; // Kitni lines girengi
+
+        const rainDrops = [];
+        for( let x = 0; x < columns; x++ ) {
+            rainDrops[x] = 1;
+        }
+
+        const draw = () => {
+            // Thoda sa kala transparent layer lagao taaki "trail" bane
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0F0'; // Neon Green Text
+            ctx.font = fontSize + 'px monospace';
+
+            for(let i = 0; i < rainDrops.length; i++)
+            {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i*fontSize, rainDrops[i]*fontSize);
+                
+                // Randomly wapas upar bhejo taaki alag alag speed lage
+                if(rainDrops[i]*fontSize > canvas.height && Math.random() > 0.975){
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        };
+
+        // Har 30ms me draw function call karo (Animation speed)
+        setInterval(draw, 30);
+
+        // Agar window size change ho to canvas adjust karo
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+
+</body>
+</html>
