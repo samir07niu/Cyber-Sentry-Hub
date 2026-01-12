@@ -17,11 +17,16 @@
         table { margin: auto; border-collapse: collapse; width: 60%; margin-top: 20px; }
         td, th { border: 1px solid #333; padding: 10px; text-align: left; }
         th { background-color: #002200; }
+        
+        /* Password Blur Effect */
+        .secret-blur { filter: blur(5px); transition: 0.3s; cursor: pointer; }
+        .secret-blur:hover { filter: blur(0px); }
+
         .back-btn { position: absolute; top: 20px; left: 20px; text-decoration: none; color: gray; }
     </style>
 </head>
 <body>
-    <a href="/" class="back-btn">⬅ Back to Dashboard</a>
+    <a href="/dashboard" class="back-btn">⬅ Back to Dashboard</a>
     <h1>🔐 PASSWORD VAULT</h1>
     
     <div style="border: 1px dashed #004400; padding: 20px; display: inline-block;">
@@ -41,9 +46,10 @@
         {% for row in secrets %}
         <tr>
             <td>{{ row[0] }}</td>
-            <td style="filter: blur(3px);">{{ row[1] }} (Hover to see)</td>
+            <td class="secret-blur">{{ row[1] }}</td>
         </tr>
         {% endfor %}
     </table>
 </body>
+
 </html>
