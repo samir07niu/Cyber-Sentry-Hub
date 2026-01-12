@@ -12,16 +12,16 @@
             background-color: black;
             color: #0f0; /* Neon Green */
             font-family: 'Share Tech Mono', monospace;
-            overflow: hidden; /* Scrollbar chupao */
+            overflow: hidden; /* Hide Scrollbar */
         }
 
         /* --- MATRIX CANVAS (Background Animation) --- */
         canvas {
             display: block;
-            position: fixed; /* Fix piche chipka do */
+            position: fixed; /* Fixed Background */
             top: 0;
             left: 0;
-            z-index: -1; /* Sabse peeche */
+            z-index: -1; /* Send to Back */
         }
 
         /* --- MAIN CONTENT CONTAINER --- */
@@ -31,19 +31,19 @@
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            background: rgba(0, 20, 0, 0.7); /* Thoda sa transparent background taaki text padha jaye */
+            background: rgba(0, 20, 0, 0.7); /* Transparent Overlay */
             padding: 40px;
             border: 2px solid #0f0;
             box-shadow: 0 0 30px #0f0, inset 0 0 20px #0f0; /* Neon Glow */
             border-radius: 10px;
-            backdrop-filter: blur(5px); /* Peeche ka matrix dhundhla karo */
+            backdrop-filter: blur(5px); /* Blur Effect */
         }
 
         h1 {
             font-size: 60px;
             margin-bottom: 10px;
-            text-shadow: 0 0 20px #0f0; /* Text Chamkao */
-            animation: glitch 2s infinite; /* Glitch animation */
+            text-shadow: 0 0 20px #0f0;
+            animation: glitch 2s infinite;
         }
 
         p { font-size: 18px; color: cyan; letter-spacing: 2px; }
@@ -61,7 +61,7 @@
             display: inline-block;
             margin: 20px;
             font-family: 'Share Tech Mono', monospace;
-            transition: 0.3s; /* Smooth hover animation */
+            transition: 0.3s;
             box-shadow: 0 0 15px #004400;
             position: relative;
             overflow: hidden;
@@ -71,7 +71,7 @@
             background-color: #0f0;
             color: black;
             box-shadow: 0 0 40px #0f0;
-            transform: scale(1.05); /* Thoda bada ho jaye */
+            transform: scale(1.05);
         }
 
         /* --- SPECIAL BUTTONS --- */
@@ -94,7 +94,7 @@
         <p>[ SYSTEM STATUS: ONLINE || OPERATOR: {{ user }} ]</p>
         <hr>
         <br>
-	<br><br>
+    <br><br>
 <a href="/logout" class="btn" style="border-color: red; color: red;">🛑 LOGOUT SYSTEM</a>
         
         <a href="/myip" class="btn">📍 TRACK IP</a>
@@ -108,18 +108,18 @@
         const canvas = document.getElementById('matrixCanvas');
         const ctx = canvas.getContext('2d');
 
-        // Canvas ko full screen karo
+        // Full Screen Canvas
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        // Matrix Characters (Katana, numbers, etc.)
+        // Matrix Characters
         const katakana = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
         const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         const nums = '0123456789';
         const alphabet = katakana + latin + nums;
 
         const fontSize = 16;
-        const columns = canvas.width/fontSize; // Kitni lines girengi
+        const columns = canvas.width/fontSize; 
 
         const rainDrops = [];
         for( let x = 0; x < columns; x++ ) {
@@ -127,7 +127,7 @@
         }
 
         const draw = () => {
-            // Thoda sa kala transparent layer lagao taaki "trail" bane
+            // Translucent Black Layer for Trail Effect
             ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -139,7 +139,7 @@
                 const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
                 ctx.fillText(text, i*fontSize, rainDrops[i]*fontSize);
                 
-                // Randomly wapas upar bhejo taaki alag alag speed lage
+                // Random Reset Logic
                 if(rainDrops[i]*fontSize > canvas.height && Math.random() > 0.975){
                     rainDrops[i] = 0;
                 }
@@ -147,10 +147,10 @@
             }
         };
 
-        // Har 30ms me draw function call karo (Animation speed)
+        // Render Loop (30ms interval)
         setInterval(draw, 30);
 
-        // Agar window size change ho to canvas adjust karo
+        // Responsive Resize Handler
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
@@ -158,4 +158,5 @@
     </script>
 
 </body>
+
 </html>
